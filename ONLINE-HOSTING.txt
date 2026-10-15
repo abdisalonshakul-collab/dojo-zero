@@ -1,0 +1,20 @@
+DOJO ZERO v4.8 — ONLINE 1v1 HOSTING
+
+This build includes public matchmaking, private six-character room codes, and synchronized 1v1 combat state.
+The game is NOT publicly online until this Node.js server is deployed to a public hosting provider.
+
+DEPLOY REQUIREMENTS
+- Node.js 16 or newer
+- Start command: npm start (or node server.js)
+- Set PORT if your host requires it
+- Persistent disk recommended for dojo-data.json (accounts/progress)
+- Keep the service running; free hosts may sleep or change URLs
+
+AFTER DEPLOYING
+1. Open the deployed site URL and create/log into an account.
+2. To use a separate static host for the game client, configure window.DZ_API to the server origin before js/online-duel.js loads, and allow that origin with ALLOWED_ORIGIN on the server.
+3. For easiest setup, deploy the entire ZIP as one Node web service so client and /api endpoints share the same origin.
+4. Test on two different devices/accounts. Public matchmaking pairs two players; private rooms use the displayed six-character code.
+
+IMPORTANT
+No code package can guarantee "online forever" by itself. Availability depends on the hosting provider, account status, quotas, and whether the service is kept running. Do not use a free host if uninterrupted 24/7 availability is required.

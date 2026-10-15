@@ -1,0 +1,144 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><script src="./config.js"></script><script src="./economy.js"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#110C1D"><link rel="stylesheet" href="./css/style.css?v=48"><link rel="manifest" href="./manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Dojo Zero"><link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png"><link rel="apple-touch-icon" href="./icon-192.png">
+
+
+
+
+
+</head><body><title>Dojo Zero</title>
+
+
+<header class="hud">
+  <div class="brand">Dojo Zero</div>
+  <div class="chips" id="chips" hidden></div>
+  <div class="mini" id="modeLabel">Mode: Training</div>
+  <div class="ult hp" id="hpbar" hidden><i></i><span id="hptxt">Health</span></div>
+  <div class="ult" id="ultbar"><i></i><span id="ulttxt">Ultimate</span></div>
+  <div class="tools">
+    <button class="tool" id="pause" type="button" aria-pressed="false">Pause</button>
+    <button class="tool" id="mute" type="button">Sound on</button>
+    <button class="tool" id="reset" type="button">Restart</button>
+    <button class="tool" id="leave" type="button">Leave</button>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <canvas id="cv" aria-label="Training arena"></canvas>
+  <div id="hurtfx"></div><div id="stylemeter" hidden><b id="styl">D</b><span id="stylt">STYLE</span><i><u id="styf"></u></i></div>
+  <div id="cutin" aria-hidden="true"><div class="band"></div><img alt=""><div class="nm"><small></small><span></span></div></div>
+  <div id="storyHint" hidden></div>
+  <div class="panel pl"><div class="combo" id="combo" hidden></div><div class="mini" id="broken"></div></div>
+  <div class="panel pr"><div class="mini" id="endless"></div></div>
+  <section class="intro" id="intro">
+    <canvas id="titleBg"></canvas>
+    <div class="ttl">
+      <div class="ttl-top"><span>● ORIGINAL ANIME ARENA FIGHTER</span><span id="acctInfo"></span><span id="ttlBest"></span><span style="opacity:.7;font-weight:800">v4.6</span></div>
+      <div class="ttl-main">
+        <div class="ttl-kicker">道場 ZERO</div>
+        <div class="ttl-name"><span>DOJO</span><span class="z">ZERO</span></div>
+        <div class="ttl-tag">24 fighters &middot; 7 modes &middot; 300-level story</div>
+        <button class="go" id="go" type="button">▶ PLAY</button>
+        <div class="ttl-row">
+          <button class="tbtn" id="btnHow" type="button">How to play</button>
+          <button class="tbtn" id="btnRec" type="button">Records</button>
+          <button class="tbtn" id="btnSet" type="button">Settings</button>
+          <button class="tbtn" id="btnShop" type="button">🛒 Shop</button>
+          <button class="tbtn" id="btnMis" type="button">🎯 Missions</button>
+          <button class="tbtn" id="btnLogout" type="button" style="display:none">Log out</button>
+        </div>
+      </div>
+      <div class="lineup" id="lineup"><div class="lu" style="--k:#6FE7F0;--i:0"><img src="./portraits/fighter-1.svg?v=7" alt=""><b>Kaito</b></div><div class="lu" style="--k:#B38BFF;--i:1"><img src="./portraits/fighter-2.svg?v=6" alt=""><b>Mira</b></div><div class="lu" style="--k:#FF9A4D;--i:2"><img src="./portraits/fighter-3.svg?v=6" alt=""><b>Ren</b></div><div class="lu" style="--k:#45C9FF;--i:3"><img src="./portraits/fighter-4.svg?v=6" alt=""><b>Nami</b></div><div class="lu" style="--k:#FFE45E;--i:4"><img src="./portraits/fighter-5.svg?v=6" alt=""><b>Raiden</b></div><div class="lu" style="--k:#C99A6B;--i:5"><img src="./portraits/fighter-6.svg?v=6" alt=""><b>Boulder</b></div><div class="lu" style="--k:#B7A7FF;--i:6"><img src="./portraits/fighter-7.svg?v=6" alt=""><b>Shin</b></div><div class="lu" style="--k:#8CEBFF;--i:7"><img src="./portraits/fighter-8.svg?v=6" alt=""><b>Yuki</b></div><div class="lu" style="--k:#FF79D1;--i:8"><img src="./portraits/fighter-9.svg?v=6" alt=""><b>Vex</b></div><div class="lu" style="--k:#7DFFB0;--i:9"><img src="./portraits/fighter-10.svg?v=7" alt=""><b>Sora</b></div><div class="lu" style="--k:#FF7AC8;--i:10"><img src="./portraits/fighter-11.svg?v=7" alt=""><b>Hana</b></div><div class="lu" style="--k:#DDE8FF;--i:11"><img src="./portraits/fighter-12.svg?v=7" alt=""><b>Kyo</b></div><div class="lu" style="--k:#FF4D6D;--i:12"><img src="./portraits/fighter-13.svg?v=7" alt=""><b>Gorou</b></div><div class="lu" style="--k:#F5D78A;--i:13"><img src="./portraits/fighter-14.svg?v=7" alt=""><b>Toki</b></div><div class="lu" style="--k:#C6FF3D;--i:14"><img src="./portraits/fighter-15.svg?v=8" alt=""><b>Kuro</b></div><div class="lu" style="--k:#A9B4C8;--i:15"><img src="./portraits/fighter-16.svg?v=8" alt=""><b>Tetsu</b></div><div class="lu" style="--k:#6C7BFF;--i:16"><img src="./portraits/fighter-17.svg?v=8" alt=""><b>Rei</b></div><div class="lu" style="--k:#19C3A6;--i:17"><img src="./portraits/fighter-18.svg?v=8" alt=""><b>Oto</b></div><div class="lu" style="--k:#FFB020;--i:18"><img src="./portraits/fighter-19.svg?v=8" alt=""><b>Ryu</b></div></div>
+    </div>
+    <div class="modal" id="modal" hidden><div class="mbox"><h2 id="mtitle"></h2><div id="mbody"></div><button class="tbtn" id="mclose" type="button">Close</button></div></div>
+  </section>
+  <section class="intro fs" id="characterScreen" hidden>
+    <div class="fs-top"><button class="tool" id="backWelcome" type="button">← Back</button><div class="fs-h"><small>CHOOSE YOUR FIGHTER</small><h2>FIGHTER SELECT</h2></div><button class="tool" id="fsRand" type="button">🎲 Random</button></div>
+    <button id="admIcon" type="button" aria-label="Admin menu" title="Admin menu">✦</button>
+    <div class="fs-main" id="fsStage">
+      <div class="fs-port"><i class="fs-num" id="fsNum"></i><div class="fs-aura"></div><img id="fsImg" alt=""><div class="fs-nm"><small id="fsTag"></small><h3 id="fsName"></h3></div></div>
+      <div class="fs-info">
+        <p id="fsBlurb"></p>
+        <div class="fs-meta"><span id="fsDiff"></span><span id="fsCombo"></span></div>
+        <div class="fs-bars" id="fsBars"></div>
+        <div class="fs-pass" id="fsPass"></div>
+        <ul class="fs-sk" id="fsSk"></ul>
+      </div>
+    </div>
+    <div class="fs-roster"><button class="fs-ar" id="fsPrev" type="button" aria-label="Previous fighter">‹</button><div id="cards"></div><button class="fs-ar" id="fsNext" type="button" aria-label="Next fighter">›</button></div>
+    <button class="sbtn" id="continueMode" type="button">SELECT →</button>
+  </section>
+  <section class="intro" id="storyScreen" hidden>
+    <div class="st-top"><button class="tool" id="stBack" type="button">← Back</button><div class="fs-h"><small>THE HOLLOW ORDER SAGA</small><h2 id="stTitle">STORY MODE</h2></div><b id="stTot"></b></div>
+    <div id="storyBody"></div>
+  </section>
+  <section class="intro" id="storyResult" hidden style="z-index:26">
+    <div class="eyebrow">Story mode</div><h1 id="srTitle"></h1><div id="srStars"></div><p id="srTxt"></p>
+    <div class="sr-b"><button class="sbtn" id="srNext" type="button">NEXT LEVEL →</button><button class="tool" id="srRetry" type="button">Retry</button><button class="tool" id="srMap" type="button">Story map</button></div>
+  </section>
+  <section class="intro" id="shopScreen" hidden>
+    <div class="sh-top"><button class="tool" id="shopBack" type="button">← Back</button><div class="fs-h"><small>SPEND YOUR COINS</small><h2>SHOP</h2></div><b id="shopCoins" class="sh-coins"></b></div>
+    <p id="shopMsg" class="sh-msg">Newer fighters cost more: 300, 500, 750 or 1,000 coins. Earn coins by completing missions.</p>
+    <div class="sh-grid" id="shopGrid"></div>
+  </section>
+  <section class="intro" id="modeScreen" hidden>
+    <div class="menu-content">
+      <div class="eyebrow">Fighter selected</div>
+      <h2 class="screen-title">CHOOSE A MODE</h2>
+      <p class="screen-subtitle" id="modeWelcomeText">Choose how you want to fight.</p>
+      <div class="mode-cards">
+        <button class="mode-card" type="button" data-mode="story" style="--c:#FF79D1"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">📖</i></i><strong>Story</strong><span>30 parts, 300 levels. Start with the tutorial and fight your way to the Zero King.</span></button>
+        <button class="mode-card" type="button" data-mode="train"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">✦</i></i><strong>Training</strong><span>Practice combos and test your abilities on training dummies.</span></button>
+        <button class="mode-card" type="button" data-mode="waves"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">!</i></i><strong>Waves</strong><span>Fight waves of enemies and see how long you can survive.</span></button>
+        <button class="mode-card" type="button" data-mode="tournament"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">★</i></i><strong>Tournament</strong><span>Battle through five rounds against increasingly tough bots.</span></button>
+        <button class="mode-card" type="button" data-mode="daily" style="--c:#C79BFF"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">✦</i></i><strong>Daily Rift</strong><span id="dailyDesc">A new seeded challenge every day. Five rounds, a daily twist, and boons to pick.</span></button>
+        <button class="mode-card" type="button" data-mode="blitz" style="--c:#FFD166"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">⚡</i></i><strong>Blitz</strong><span id="blitzDesc">60 seconds. Every kill adds time. Chain kills for a huge score.</span></button>
+        <button class="mode-card" type="button" data-mode="boss" style="--c:#FF6A5A"><i class="mode-doodle" aria-hidden="true"><i class="head"></i><i class="body"></i><i class="arm left"></i><i class="arm right"></i><i class="leg left"></i><i class="leg right"></i><i class="accent">☠</i></i><strong>Boss Rush</strong><span id="bossDesc">Five giant bosses, one after another. Each is stronger than the last.</span></button>
+
+      </div>
+      <button class="tool" id="onlineDuelBtn" type="button">🌐 Online 1v1</button>
+      <button class="tool" id="backCharacters" type="button">← Change character</button>
+    </div>
+  </section>
+  <section class="pause-overlay" id="pauseOverlay" hidden aria-label="Paused game">
+    <div class="pause-card"><div class="eyebrow">Take a breather</div><h2>Paused</h2><p>Game action is stopped. Your round is waiting for you.</p><div class="pause-actions"><button class="go" id="resume" type="button">Resume game</button><button class="tool" id="pauseRestart" type="button">Restart mode</button><button class="tool" id="pauseStory" type="button" hidden>Story map</button><button class="tool" id="pauseMenu" type="button">Character select</button></div></div>
+  </section>
+  <section class="intro" id="over" hidden>
+    <div class="eyebrow">Waves mode</div>
+    <h1>Overrun</h1>
+    <p id="overtxt"></p>
+    <button class="go" id="again" type="button">Try again</button>
+    <button class="tool" id="totrain" type="button">Back to training</button>
+  </section>
+</main>
+<section class="intro" id="pick" hidden style="z-index:30">
+  <div class="eyebrow" id="picktag">Rift cleared</div>
+  <h1 style="font-size:clamp(26px,5vw,44px)">Choose a boon</h1>
+  <div class="mode-cards" id="pickcards"></div>
+</section>
+<div class="fade-screen" id="fadeScreen"></div>
+<div id="ownerTag">-Abdicrez (Owner)</div>
+
+<footer class="pad" id="pad">
+  <div class="cluster left">
+    <div class="stick" id="stick" style="--x:104;--y:92;--d:168"><span class="dir l">&#9664;</span><span class="dir r">&#9654;</span><div class="knob" id="knob"></div></div>
+    <button class="btn" data-act="dash" type="button" style="--x:170;--y:214;--d:64;--f:12"><small>Q</small><b>DASH</b></button>
+  </div>
+  <div class="cluster right">
+    <button class="btn" data-act="s1" type="button" style="--x:230;--y:49;--d:60"><i class="cd"></i><small>1</small><b></b></button>
+    <button class="btn" data-act="s2" type="button" style="--x:197;--y:128;--d:60"><i class="cd"></i><small>2</small><b></b></button>
+    <button class="btn" data-act="s3" type="button" style="--x:138;--y:190;--d:60"><i class="cd"></i><small>3</small><b></b></button>
+    <button class="btn" data-act="s4" type="button" style="--x:61;--y:227;--d:60"><i class="cd"></i><small>4</small><b></b></button>
+    <button class="btn atk" data-act="attack" type="button" style="--x:152;--y:50;--d:80;--f:12"><small>CLICK</small><b>ATTACK</b></button>
+    <button class="btn" data-act="jump" type="button" style="--x:58;--y:58;--d:92;--f:14"><b>JUMP</b></button>
+    <button class="btn" data-act="ult" type="button" style="--x:92;--y:134;--d:68;--f:10"><i class="cd"></i><small>5</small><b>ULTIMATE</b></button>
+  </div>
+</footer>
+<div class="keys" id="keys">Move A / D &middot; Jump Space &middot; Moves 1 / 2 / 3 / 4 / 5 &middot; Dash Q &middot; Attack Click &middot; Pause P / Esc</div>
+
+<script src="./js/core.js?v=48"></script>
+<script src="./js/game.js?v=48"></script>
+
+<script src="./js/accounts-online.js?v=48"></script>
+<script src="./js/online-duel.js?v=48"></script>
+
+<script src="./js/register-sw.js?v=48"></script>
+</body></html>

@@ -1,0 +1,47 @@
+DOJO ZERO - ANIME UPDATE
+Deploy every file and folder in this ZIP to your site root, replacing the old files.
+Keep index.html, sw.js, manifest.webmanifest, both icons and the portraits folder together.
+New: original anime-style portraits for all 9 fighters (portraits/*.svg), ultimate cut-in
+animation, anime eyes and hair on the in-game fighters, new cache version.
+New modes: Daily Rift (seeded daily twist, 5 rounds, boons), Blitz (60s time attack), Boss Rush (5 bosses).
+New: per-fighter visual effects (hit sparks, cast flashes, auras, dash trails, projectile styles, landing dust).
+New: distinct enemies and arenas for Daily Rift (wraiths), Blitz (imps), Boss Rush (titans); original portrait eyes restored.
+v2 overhaul: new title screen, Records/Settings/How to play, STYLE rank meter, hit vignette, glass HUD.
+
+v3: all-new Fighter Select (hero showcase, stat bars, skills, passive, roster strip, swipe/arrow keys, random). New Story mode: 30 parts x 10 levels (part 1 is a guided tutorial), stars, unlocks, rival duels, bosses and 10 themed arenas.
+v3.1: 5 new fighters (Sora, Hana, Kyo, Gorou, Toki) with unique kits, weapons and animations; compact one-screen Fighter Select; Ren portrait mouth fixed.
+
+v3.2: 5 more fighters (Kuro venom, Tetsu iron, Rei moon, Oto sound, Ryu dragon) for 19 total.
+v3.3: secret admin fighter God (title screen button, code 260000): 100 dmg basics, 500 dmg skills, shining aura.
+v3.4: login/sign-up screen (accounts stored on this device). Owner account has a hidden top-left admin panel in every mode.
+v3.5: fixed owner admin panel (was never appearing because the account script could not see the game state). Now shows top-left in every mode for Abdicrez only: No cooldown, One shot, Infinite jump, Instant clear.
+v3.6: coins + shop (fighters cost 1,000, Kaito free), 3 hourly missions (50-200 coins), black-fade Shop on the title screen, owner/mod unlimited coins, owner can give mod by username, admin icon (top-right of Fighter Select, password) opening God + 10 admin fighters (Nova, Grimm, Volt-9, Pyra, Aegis, Sera, Titan, Wraith, Kage, Pip), Abdicrez stats 999999999999999.
+
+v4.0: restyled menus (glass UI, neon buttons, animated screens); 5 new shop fighters (Ember, Frost, Zephyr, Onyx, Sol) = 24 total; 18 new missions; admin console with 10 command buttons plus typed commands (/help).
+ONLINE ACCOUNTS: run `node server.js` (Node 16+) on any host and open that address. Accounts, coins, fighters and missions then sync to the server; the owner can give mod online.
+Without the server (static hosting) the game still works with accounts stored on the device. A tag in the bottom-right shows ONLINE or OFFLINE.
+
+v4.1: Leaderboard (coins, story stars, best wave, Blitz, Daily Rift, fighters; title screen button). Online accounts now sync ALL progress (coins, fighters, missions, story stars, records, settings) and keep you logged in; logging in on another device loads it. Needs node server.js.
+
+v4.2: all fighters now cost 500 coins. Bug fixes: online server detection (was always showing OFFLINE), Blitz crash (aura code in imp drawing), Whirlpool/well gradient crash, admin panel Close button order. Tested headless: all modes, 5 new fighters, owner admin commands, leaderboard, shop.
+
+v4.3: version label (v4.3) on the title screen; service worker now fetches index.html fresh from the network first so updates show up.
+
+v4.4: config.js (set window.DZ_API to your server URL for APK builds), server CORS enabled so an APK can reach it, version label v4.4.
+
+v4.5: security + structure pass. Server: debounced atomic saves, login/signup rate limiting, 30-day hashed sessions, async scrypt, uploads validated (coins, fighters, records), leaderboard hides owner/mods and caps values, safer static serving. Game: tiered fighter prices (economy.js), God code no longer stored in plain text, optional secure owner mode (config.js), index.html split into css/ and js/ files, service worker caches every file.
+
+v4.6: accounts are registered permanently. New accounts are written to disk at once; accounts first made offline on a device are registered on the server the next time they log in while online; with a known server, sign-up is refused while it is unreachable (no more silent device-only accounts); sessions survive server restarts; rolling .bak backup.
+
+
+DOJO ZERO v4.7.0
+- Added online 1v1 room lobby with public matchmaking and private 6-character room codes.
+- Added authenticated server endpoints for creating, joining, polling, and leaving rooms.
+- Added mobile-friendly online lobby and service-worker cache update.
+- IMPORTANT: this release syncs room presence only; combat simulation is not yet network-authoritative/synchronized.
+
+v4.8.0 — Online 1v1 combat sync
+- Added duel state API with per-player position and server-maintained health.
+- Added server-validated hit range, facing checks, and per-player attack cooldowns.
+- Added live online battle arena controls: A/D or arrows, Space jump, click basic attack, 1–3 abilities, 4 ultimate, Q dash.
+- Added ONLINE-HOSTING.txt explaining that public deployment is required for internet matchmaking.
