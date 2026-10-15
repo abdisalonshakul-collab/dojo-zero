@@ -141,4 +141,38 @@
 <script src="./js/online-duel.js?v=48"></script>
 
 <script src="./js/register-sw.js?v=48"></script>
+  
+<script>
+(function () {
+  function showError(message) {
+    let box = document.getElementById('debug-errors');
+    if (!box) {
+      box = document.createElement('pre');
+      box.id = 'debug-errors';
+      box.style.cssText =
+        'position:fixed;inset:0;z-index:999999;' +
+        'background:#fff;color:#b00020;padding:16px;' +
+        'overflow:auto;white-space:pre-wrap;font-size:14px';
+      document.body.appendChild(box);
+    }
+    box.textContent += message + '\n\n';
+  }
+
+  window.addEventListener('error', function (e) {
+    showError('ERROR: ' + e.message +
+      '\nFile: ' + e.filename +
+      '\nLine: ' + e.lineno);
+  });
+
+  window.addEventListener('unhandledrejection', function (e) {
+    showError('PROMISE ERROR: ' + String(e.reason));
+  });
+
+  setTimeout(function () {
+    if (!document.getElementById('debug-errors')) {
+      showError('No JavaScript errors detected yet.');
+    }
+  }, 5000);
+})();
+</script>
 </body></html>
